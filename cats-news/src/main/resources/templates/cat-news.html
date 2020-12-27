@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.5.3/css/bootstrap.min.css} "/>
+</head>
+<body>
+
+<main>
+    <h4 class="text-center">Cat News</h4>
+    <br/>
+    <div class="text-center">
+        <dl scope="row" th:each="cat:${catNewsList}" >
+            <dt><img th:width="500px" th:src="${cat.getImageSrc()}"/></dt>
+            <dt th:text="${cat.getNews()}"></dt>
+            <dt> <a class="btn"  th:href="@{update-cat-news/__${cat.id}__}">Edit News</a></dt>
+        </dl>
+        <a class="btn"  th:href="@{get-new-cat-news}">New Cat News</a>
+    </div>
+
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js}"></script>
+
+    <link th:rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css}"/>
+    <link th:rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.standalone.min.css}"/>
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{webjars/font-awesome/5.11.2/css/all.css} "/>
+
+</head>
+<body>
+<main>
+    <h4>Add car</h4>
+    <br/>
+    <form th:action="@{/add-car}" th:object="${newCar}" method="post" class="col-4">
+        <p>Mark: <input type="text" th:field="*{mark}"></p>
+        <p>Model: <input type="text" th:field="*{model}"></p>
+        <p>Color:
+            <select th:field="*{color}">
+                <option th:each="colorOpt : ${T(pl.zwolek.listofcarsthymeleafdb.enums.Color).values()}"
+                        th:value="${colorOpt}" th:text="${colorOpt}"></option>
+            </select>
+        </p>
+        <p>Production Date:
+        <div class="input-group date">
+            <input type="text" class="form-control" id="productionDate" autocomplete="off" th:field="*{productionDate}"/>
+            <div class="input-group-append">
+                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+            </div>
+        </div>
+        </p>
+        <p><input type="submit" value="add new car"></p>
+        <p><a th:href="@{~/cars}">Car list</a></p>
+    </form>
+</main>
+
+
+<script>
+    $('.input-group.date').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        format: "dd-mm-yyyy"
+    });
+</script>
+
+</body>
+</html>

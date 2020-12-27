@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://igoradamenko.github.io/awsm.css/css/awsm.min.css">
+</head>
+<body>
+<main>
+    <h4>Update car</h4>
+    <br/>
+    <form th:action="@{/update-cat-news/__${catNews.id}__}" th:object="${catNews}" method="post">
+        <p>News:  <input type="text" th:field="*{news}"></p>
+        <p><input type="submit" value="update cat"></p>
+        <p> <a th:href="@{~/cat-news}">Cat News</a></p>
+    </form>
+</main>
+
+</body>
+</html>
